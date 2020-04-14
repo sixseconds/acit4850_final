@@ -16,5 +16,24 @@
                 echo "Done Requirements."
             }
         }
+        stage("Code Quality") {
+            steps {
+                sh "pylint-fail-under --fail_under 5.0 *.py"
+            }
+        }
+        stage("Code Quantity") {
+            steps {
+                pyCount = sh (
+                    script: "ls -l *.py | wc -l",
+                    returnStdout: true
+                ).trim()
+                echo "Number of python files: ${pyCount}"
+            }
+        }
+        stage("Run") {
+            steps {
+                sh "pylint-fail-under --fail_under 5.0 *.py"
+            }
+        }
     }
 }
