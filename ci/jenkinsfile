@@ -23,8 +23,10 @@
         }
         stage("Code Quantity") {
             steps {
-                def pyCount = findFiles(glob: "*.py")
-                echo "Number of python files: ${pyCount}"
+                script {
+                    def pyCount = findFiles(glob: "*.py")
+                    echo "Number of python files: ${pyCount}"
+                }
             }
         }
         stage("Run") {
