@@ -11,8 +11,9 @@
     stages {
         stage("Build") {
             steps {
-                echo ""
+                echo "Installing the Requirements"
                 sh "pip install -r requirements.txt"
+                echo "Done Requirements."
             }
         }
     }
