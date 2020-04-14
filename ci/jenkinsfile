@@ -23,10 +23,7 @@
         }
         stage("Code Quantity") {
             steps {
-                def pyCount = sh (
-                    script: "ls -l *.py | wc -l",
-                    returnStdout: true
-                ).trim()
+                def pyCount = findFiles(glob: "*.py")
                 echo "Number of python files: ${pyCount}"
             }
         }
