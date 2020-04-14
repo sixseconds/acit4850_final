@@ -23,7 +23,7 @@
         }
         stage("Code Quantity") {
             steps {
-                pyCount = sh (
+                def pyCount = sh (
                     script: "ls -l *.py | wc -l",
                     returnStdout: true
                 ).trim()
@@ -31,8 +31,14 @@
             }
         }
         stage("Run") {
+            when {
+                expression { params.TARGET == "run"}
+            }
             steps {
-                sh "pylint-fail-under --fail_under 5.0 *.py"
+                sh "python3 main.py phones text output"
+                sh "python3 main.py tablets csv output"
+                sh "python3 main.py laptops json output"
+                sh "python3 main.py phones yaml output"
             }
         }
     }
