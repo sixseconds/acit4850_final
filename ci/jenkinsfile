@@ -25,7 +25,7 @@
             steps {
                 script {
                     def pyCount = findFiles(glob: "*.py")
-                    echo "Number of python files: ${pyCount}"
+                    echo "Number of python files: ${pyCount.length}"
                 }
             }
         }
@@ -38,6 +38,11 @@
                 sh "python3 main.py tablets csv output"
                 sh "python3 main.py laptops json output"
                 sh "python3 main.py phones yaml output"
+            }
+        }
+        stage("Package") {
+            script {
+                def pyFiles = findFiles(glob: "*.py")
             }
         }
     }
