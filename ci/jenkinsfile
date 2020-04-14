@@ -1,0 +1,19 @@
+/* 
+   Nathan Chung
+   April 4, 2020
+   Pipeline for ACIT 4850 Final */
+
+   pipeline {
+    agent any
+    parameters {
+        string(name: 'TARGET', defaultValue: 'run', description: 'Run Target Value')
+    }
+    stages {
+        stage("Build") {
+            steps {
+                echo ""
+                sh "pip install -r requirements.txt"
+            }
+        }
+    }
+}
